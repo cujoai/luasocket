@@ -419,6 +419,7 @@ static int global_create(lua_State *L) {
         p_netlink nl = (p_netlink)lua_newuserdata(L, sizeof(t_netlink));
 
         if (prot != NETLINK_GENERIC) {
+            nl->nlgb = NULL;
             nl->nlb = malloc(sizeof(struct nlmsgbuf));
             if (!nl->nlb) {
                 socket_destroy(&sock);
@@ -427,6 +428,7 @@ static int global_create(lua_State *L) {
                 return 2;
             }
         } else {
+            nl->nlb = NULL;
             nl->nlgb = malloc(sizeof(struct nlgenmsgbuf));
             if (!nl->nlgb) {
                 socket_destroy(&sock);
