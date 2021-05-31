@@ -82,7 +82,7 @@ static int global_select(lua_State *L) {
         lua_pushstring(L, "timeout");
         return 3;
     } else {
-        luaL_error(L, "select failed");
+        luaL_error(L, "select failed: error %d", errno);
         return 3;
     }
 }
